@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link } from 'react-router-dom'
 import Box from '../../Box';
 import Button from '../../Button';
 import { HeaderStyled, ContainerStyled, FooterStyled } from './styles';
@@ -12,7 +13,7 @@ function Home() {
   const [post, setPost] = useState<any>();
   const [long, setLong] = useState('-23.483063401164245');
   const [lat, setLat] = useState('-46.661715598213945');
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('São Paulo')
 
   const handleClick = (id : number) => {
     switch(id){
@@ -69,7 +70,7 @@ function Home() {
           description={post?.weather[0].description}
         />
         <FooterStyled>
-          <Button text='Mostrar Min/Máx' onClick={() => handleClick(3)}/>   
+        <Link to='/detalhe'><Button text='Mostrar Min/Máx' onClick={() => handleClick(3)}/></Link>   
         </FooterStyled>
     </ContainerStyled>
   );
