@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {Link } from 'react-router-dom'
-import Box from '../../Box';
-import Button from '../../Button';
 import { HeaderStyled, ContainerStyled, FooterStyled } from './styles';
-import { api } from '../../../Service/api';
-// sp -23.526603154062983, -46.62095410262092
-// rj -22.92365944894421, -43.18277388005018
-// bh -19.908319594661467, -43.93631910577775
+import { api } from '../../Service/api';
+import Button from '../../components/Button';
+import Box from '../../components/Box';
+import {addWeather} from '../../storeConfig/store'
+import { useDispatch } from 'react-redux';
 
 function Home() {
-
   const [post, setPost] = useState<any>();
   const [long, setLong] = useState('-23.483063401164245');
   const [lat, setLat] = useState('-46.661715598213945');
   const [title, setTitle] = useState('São Paulo')
-
+  const dispatch = useDispatch()
   const handleClick = (id : number) => {
     switch(id){
       case 1:
@@ -38,10 +36,7 @@ function Home() {
         setTitle('São Paulo')
         break
     }    
-  }
-
-  console.log('lat', lat)
-  console.log('long', long)
+  }  
 
   useEffect(() => {
     api
@@ -49,10 +44,22 @@ function Home() {
       .then((response) => setPost(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
-      });
+      })      
+      
+      
+
   }, [long, lat]);
+
+  useEffect(() => {
+  dispatch(
+    addWeather([
+      post?.main.temp_min,
+      post?.main.temp_max
+    ])
+  )
+  },[dispatch, post])
   
-  console.log(post)
+  console.log('post', post?.main.temp_max)
   
   return (
     <ContainerStyled> 
@@ -70,10 +77,11 @@ function Home() {
           description={post?.weather[0].description}
         />
         <FooterStyled>
-        <Link to='/detalhe'><Button text='Mostrar Min/Máx' onClick={() => handleClick(3)}/></Link>   
+        <Link to='/detalhe'><Button text='Mostrar Min/Máx' /></Link>   
         </FooterStyled>
     </ContainerStyled>
   );
 }
 
-export default Home;
+
+export default Home
