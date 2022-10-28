@@ -5,9 +5,9 @@ import { ContainerStyled, ContentStyeld } from './styles'
 import { useSelector } from 'react-redux'
 import Button from '../../components/Button'
 
-const Detail = (props: any) => {
+const Detail = () => {
   const weather = useSelector((state: any) => state.weatherReducer.weather)
-
+  
   return(
    <ContainerStyled>
     <ContentStyeld>

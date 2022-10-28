@@ -12,7 +12,8 @@ export const MainStyled = styled.main`
   font-size: 14px ;
 
   @media only screen and (max-width: 350px) {
-    max-width: 250px ;
+    max-width: 150px ;
+    flex-direction: column-reverse ;
   }
 `
 
