@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import {Link } from 'react-router-dom'
-import { HeaderStyled, ContainerStyled, FooterStyled } from './styles';
-import { api } from '../../Service/api';
-import Button from '../../components/Button';
-import Box from '../../components/Box';
+import { HeaderStyled, ContainerStyled, FooterStyled } from './styles'
+import { api } from '../../Service/api'
+import Button from '../../components/Button'
+import Box from '../../components/Box'
 import {addWeather} from '../../storeConfig/store'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 function Home() {
   const [post, setPost] = useState<any>();
-  const [long, setLong] = useState('-23.483063401164245');
-  const [lat, setLat] = useState('-46.661715598213945');
+  const [long, setLong] = useState('-23.483063401164245')
+  const [lat, setLat] = useState('-46.661715598213945')
   const [title, setTitle] = useState('São Paulo')
+
   const dispatch = useDispatch()
+
   const handleClick = (id : number) => {
     switch(id){
       case 1:
@@ -43,24 +45,20 @@ function Home() {
       .get(`/api/current?lat=${lat}&lon=${long}`)
       .then((response) => setPost(response.data))
       .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      })      
-      
-      
-
-  }, [long, lat]);
+        console.error("ops! ocorreu um erro" + err)
+      })                  
+  }, [long, lat])
 
   useEffect(() => {
-  dispatch(
-    addWeather([
-      post?.main.temp_min,
-      post?.main.temp_max
-    ])
-  )
-  },[dispatch, post])
-  
-  console.log('post', post?.main.temp_max)
-  
+    dispatch(
+      addWeather([
+        title,
+        post?.main.temp_min,
+        post?.main.temp_max
+      ])
+    )
+  },[dispatch, post, title])
+    
   return (
     <ContainerStyled> 
       <HeaderStyled>
@@ -80,8 +78,7 @@ function Home() {
         <Link to='/detalhe'><Button text='Mostrar Min/Máx' /></Link>   
         </FooterStyled>
     </ContainerStyled>
-  );
+  )
 }
-
 
 export default Home

@@ -1,25 +1,22 @@
-import React from 'react';
+import React from 'react'
 import {Link } from 'react-router-dom'
+import { ContainerStyled, ContentStyeld } from './styles'
 
-import { connect, useSelector } from 'react-redux'
-import Button from '../../components/Button';
+import { useSelector } from 'react-redux'
+import Button from '../../components/Button'
 
 const Detail = (props: any) => {
   const weather = useSelector((state: any) => state.weatherReducer.weather)
-  console.log('aq', weather)
+
   return(
-   <>
-   <span>Min {weather[1][0]}ºC</span><br/>
-   <span>Max {weather[1][1]}ºC</span>
+   <ContainerStyled>
+    <ContentStyeld>
+      <span>Minima:  {weather[1][0]} - {weather[1][1]}ºC</span><br/>
+      <span>Máxima:  {weather[1][0]} - {weather[1][2]}ºC</span>
+    </ContentStyeld>
     <Link to='/'><Button text='Voltar'/></Link>   
-   </> 
+   </ContainerStyled> 
   )
 }
 
-function mapStateToProps(state: any) {
-	return {
-		prop1: state.prop1,
-}
-}
-
-export default connect(mapStateToProps)(Detail)
+export default Detail

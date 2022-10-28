@@ -1,6 +1,6 @@
-import React from "react";
-import { BoxProps } from "./interface";
-import { MainStyled, ColumnStyled, RowStyled, LineStyled, LineTempStyled } from "./styles";
+import React from "react"
+import { BoxProps } from "./interface"
+import { MainStyled, ColumnStyled, RowStyled, LineStyled, LineTempStyled } from "./styles"
 
 const Box = ({title, temp, min, max, icon, description} : BoxProps) =>{
  return(
@@ -11,8 +11,8 @@ const Box = ({title, temp, min, max, icon, description} : BoxProps) =>{
       <LineTempStyled>{temp} ºC</LineTempStyled>
       </RowStyled>
       <RowStyled>
-        <LineStyled>Max {max} ºC</LineStyled>
-        <LineStyled>Min {min} ºC</LineStyled>
+        <LineStyled>Máx {max} ºC</LineStyled>
+        <LineStyled>Mín {min} ºC</LineStyled>
       </RowStyled>
     </ColumnStyled>
     <ColumnStyled>

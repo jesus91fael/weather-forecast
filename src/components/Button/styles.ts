@@ -5,7 +5,7 @@ export const ButtonStyled = styled.button`
   border: none;
   flex: 1 ;
   margin: 5px;
-  max-width: 150px ;
+  width: 150px ;
   background-color:#836FFF;
   font-size: 12px;
   padding: 10px 10px;
@@ -18,4 +18,4 @@ export const ButtonStyled = styled.button`
     color: #fff ;
     
   }
-`;
+`
